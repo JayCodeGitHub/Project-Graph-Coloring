@@ -9,7 +9,6 @@ int main() {
     int n;
     if (!(cin >> n)) return 1;
 
-    // wczytaj listę sąsiedztwa
     vector<vector<int>> adj(n + 1);
     int u, v;
     while (cin >> u >> v) {
@@ -17,7 +16,6 @@ int main() {
         adj[v].push_back(u);
     }
 
-    // implementacja
     vector<int> color(n + 1, 0);
     for (int i = 1; i <= n; ++i) {
         vector<bool> used(n + 1, false);
@@ -30,7 +28,6 @@ int main() {
         color[i] = c;
     }
 
-    // wynik
     for (int i = 1; i <= n; ++i) {
         cout << "Wierzchołek: " << i
              << ", kolor: " << color[i]
@@ -48,12 +45,3 @@ int main() {
 
     return 0;
 }
-
-// // wypisanie listy sąsiedztwa
-// for (int i = 1; i <= n; ++i) {
-//     cout << i << ":";
-//     for (int to : adj[i]) {
-//         cout << " " << to;
-//     }
-//     cout << "\n";
-// }

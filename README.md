@@ -54,7 +54,7 @@ cat ./datasets/fpsol2.i.1.col | ./binaries/format | ./binaries/graph_coloring_me
 | Kryterium aspiracji                        | `Pozwala na tabu ruch, jeśli prowadzi do najlepszego rozwiązania` |
 | Strategia wyboru ruchu                     | `Best improvement`                                                |
 | Rozwiązanie początkowe                     | `Losowe kolorowanie`                                              |
-| Warunki zakończenia                        | `conflicts == 0` OR `maxIterations` OR `noImprovementLimit`       |
+| Warunki zakończenia                        | `conflicts == 0` OR `maxTime 3m`                                  |
 | Zapisujemy najlepsze wyniki                | `best-so-far`                                                     |
 | Zakaz ponownej zmiany koloru wierzchołka   | `Vertex + Color`                                                  |
 | Typ ruchu                                  | `Zmiana koloru jednego wierzchołka na inny`                       |
