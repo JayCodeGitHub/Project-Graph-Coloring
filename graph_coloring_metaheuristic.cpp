@@ -32,14 +32,14 @@ int main() {
 
     int maxColors = n; // start od n kolorów (możesz zmienić na np. 0.7 * n)
     int minColors = 1;
-    int tabuTenure = 7; // sprawdzona wartość praktyczna (możesz zmienić na n/2)
+    int tabuTenure = 8; // sprawdzona wartość praktyczna (możesz zmienić na n/2)
     int maxIter = 10000;
     int maxTime = 180; // sekundy
     int noImprovementLimit = 10000; // duża wartość, by nie przerywać zbyt wcześnie
 
     vector<int> color(n + 1);
     vector<int> bestColor(n + 1);
-    int bestColorCount = maxColors;
+    int bestColorCount = n + 1; // Zmiana: inicjalizacja na n + 1
 
     srand(time(0));
     clock_t startTime = clock();
@@ -125,10 +125,15 @@ int main() {
         }
     }
 
-    // Wypisz najlepsze znalezione rozwiązanie
-    for (int i = 1; i <= n; ++i)
-        cout << "Wierzchołek: " << i << ", kolor: " << bestColor[i] << "\n";
-    cout << "Liczba wierzchołków: " << n
-         << ", liczba kolorów: " << bestColorCount << "\n";
+    // Dodany warunek sprawdzający przed wypisaniem wyników
+    if (bestColorCount <= n) {
+        // Wypisz najlepsze znalezione rozwiązanie
+        for (int i = 1; i <= n; ++i)
+            cout << "Wierzchołek: " << i << ", kolor: " << bestColor[i] << "\n";
+        cout << "Liczba wierzchołków: " << n
+             << ", liczba kolorów: " << bestColorCount << "\n";
+    } else {
+        cout << "Nie udało się znaleźć poprawnego kolorowania bez konfliktów.\n";
+    }
     return 0;
 }

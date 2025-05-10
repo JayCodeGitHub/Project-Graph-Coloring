@@ -45,7 +45,7 @@ cat ./datasets/fpsol2.i.1.col | ./binaries/format | ./binaries/graph_coloring_me
 | Założenie                                  | Wartość                                                           |
 | ------------------------------------------ | ----------------------------------------------------------------- |
 | Liczba wierzchołków                        | `n`                                                               |
-| Liczba kolorów `maxColors`                 | Iteracyjnie w dół, Początkowa do ustalenia start(0.7 \* n)        |
+| Liczba kolorów `maxColors`                 | Iteracyjnie w dół, Początkowa do ustalenia start(n)               |
 | Rozmiar listy tabu `tabuTenure`            | Do ustalenia start(n/2)                                           |
 | Maksymalna liczba iteracji `maxIterations` | Do ustalenia start(1000/10000) i schodzimy w dół                  |
 | Limit braku poprawy `noImprovementLimit`   | Do ustalenia start(100)                                           |
