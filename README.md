@@ -36,6 +36,10 @@ echo 23 | ./binaries/graph_generate | ./binaries/graph_coloring_metaheuristic
 cat ./datasets/fpsol2.i.1.col | ./binaries/format | ./binaries/graph_coloring_metaheuristic
 ```
 
+```
+cat ./datasets/gc1000.txt | ./binaries/graph_coloring_metaheuristic
+```
+
 #### Graph Coloring Instances
 
 [mat.tepper.cmu.edu/COLOR/instances](https://mat.tepper.cmu.edu/COLOR/instances.html)
