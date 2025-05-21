@@ -1,0 +1,29 @@
+Algorytm rozpoczyna działanie od reprezentacji grafu jako listy sąsiedztwa Na początku każdemu 
+wierzchołkowi przypisywany jest losowy kolor, przy czym dostępna paleta barw obejmuje numery od 1 do n.
+
+W kolejnej fazie algorytm przeprowadza iteracyjny proces optymalizacji, którego celem jest usunięcie 
+konfliktów. Najpierw identyfikowane są wszystkie wierzchołki uczestniczące w konfliktach. 
+Następnie, spośród tych wierzchołków losowo wybierany jest jeden, dla którego rozpatrywane są wszystkie 
+alternatywne kolory spoza obecnie przypisanego. Dla każdego możliwego przypisania obliczana jest 
+wartość delta – różnica między bieżącą liczbą konfliktów a liczbą konfliktów, 
+jaka wystąpiłaby po zmianie koloru w danym wierzchołku. Pozwala to ocenić, czy dana zmiana 
+przyczyni się do zmniejszenia liczby konfliktów.
+
+Kluczowym elementem algorytmu jest również mechanizm tabu, który przechowuje niedawno wykonane 
+zmiany kolorów. Dzięki temu zapobiega się natychmiastowemu cofnięciu dokonanego ruchu oraz cyklicznym,
+redundantnym operacjom. Jednocześnie, mechanizm aspiracji umożliwia zaakceptowanie ruchu
+oznaczonego jako tabu, jeśli prowadzi on do znaczącej redukcji globalnej liczby konfliktów.
+
+Po osiągnięciu przez algorytm sytuacji, w której graf jest pokolorowany bez konfliktów przy danej liczbie
+barw, uznaje się to rozwiązanie za poprawne. Następnie następuje proces zmniejszania liczby dostępnych kolorów. 
+Ograniczenie to polega na tym, że wierzchołki muszą otrzymać kolor z nowej, węższej palety barw, obejmującej 
+jedynie numery od 1 do k–1. W praktyce, przed rozpoczęciem kolejnej rundy optymalizacji, program 
+sprawdza, czy którykolwiek wierzchołek posiada przypisany kolor niedozwolony w nowym zakresie. 
+Jeśli tak, dla takich wierzchołków przypisywany jest losowy kolor z dozwolonego przedziału. 
+Następnie algorytm ponownie podejmuje próbę optymalizacji, dążąc do uzyskania przypisania bez konfliktów przy 
+mniejszej liczbie kolorów.
+
+Takie podejście polega na stopniowym ograniczaniu dostępnej palety, co wymusza na algorytmie znalezienie 
+nowej konfiguracji kolorowania przy coraz bardziej rygorystycznych warunkach. 
+Proces ten powtarza się aż do momentu, w którym nie uda się już znaleźć rozwiązania bez konfliktów dla węższej palety.
+Wówczas ostatnio uzyskane, poprawne kolorowanie przy większej liczbie barw jest przyjmowane jako ostateczne.
