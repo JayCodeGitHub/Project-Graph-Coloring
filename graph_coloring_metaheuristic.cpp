@@ -123,7 +123,7 @@ int main() {
         for (int i = 1; i <= n; ++i)
             cout << "Wierzchołek: " << i << ", kolor: " << bestColor[i] << "\n";
         cout << "Liczba wierzchołków: " << n
-             << ", liczba kolorów: " << bestColorCount << "\n";
+             << ", liczba kolorów: " << bestColorCount + 1 << "\n";
     } else {
         cout << "Nie udało się znaleźć poprawnego kolorowania bez konfliktów.\n";
     }
