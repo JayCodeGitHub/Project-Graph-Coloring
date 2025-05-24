@@ -13,7 +13,7 @@ int main() {
     }
 
     // Stopień wypełnienia grafu
-    const double density = 0.7;
+    const double density = 0.4;
 
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 

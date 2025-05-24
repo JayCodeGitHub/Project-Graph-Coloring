@@ -1,0 +1,77 @@
+Funkcja TabuSearchGraphColoring(adjacencyList, n, maxTime, maxIter, noImprovementLimit, tabuTenure):
+    maxColors ← n
+    bestSolution ← null
+    bestNumColors ← n + 1
+    startTime ← aktualny czas
+
+    dla i od 1 do n wykonuj:
+        currentColor[i] ← losowa liczba z zakresu [1, maxColors]
+
+    while (maxColors ≥ 1) oraz ((aktualny czas − startTime) < maxTime) do:
+        dla i od 1 do n wykonuj:
+            jeśli (currentColor[i] < 1 lub currentColor[i] > maxColors) to:
+                currentColor[i] ← losowa liczba z zakresu [1, maxColors]
+
+        dla u od 1 do n wykonuj:
+            dla c od 1 do maxColors wykonuj:
+                tabu[u][c] ← 0
+
+        iter ← 0
+        noImprovement ← 0
+        conflicts ← countConflicts(currentColor, adjacencyList)
+        globalBestConflicts ← conflicts
+
+        while (conflicts > 0) oraz (iter < maxIter) oraz ((aktualny czas − startTime) < maxTime) oraz (noImprovement < noImprovementLimit) do:
+            conflictNodes ← { u ∈ [1, n] | istnieje v ∈ adjacencyList[u] taki, że currentColor[u] = currentColor[v] }
+            wybierz losowo wierzchołek u z conflictNodes
+            oldColor ← currentColor[u]
+            bestDelta ← nieskończoność
+            bestColorChoice ← oldColor
+
+            dla candidateColor od 1 do maxColors wykonuj:
+                jeśli (candidateColor = oldColor) to kontynuuj
+                delta ← 0
+                dla każdego sąsiada v z adjacencyList[u] wykonuj:
+                    jeśli (currentColor[v] = oldColor) to:
+                        delta ← delta − 1
+                    jeśli (currentColor[v] = candidateColor) to:
+                        delta ← delta + 1
+
+                isTabu ← (tabu[u][candidateColor] > iter)
+                jeśli ( (nie isTabu i delta < bestDelta) lub (isTabu i (conflicts + delta < globalBestConflicts)) ) to:
+                    bestDelta ← delta
+                    bestColorChoice ← candidateColor
+
+            currentColor[u] ← bestColorChoice
+            tabu[u][oldColor] ← iter + tabuTenure
+            newConflicts ← countConflicts(currentColor, adjacencyList)
+
+            jeśli (newConflicts < conflicts) to:
+                noImprovement ← 0
+            w przeciwnym razie:
+                noImprovement ← noImprovement + 1
+
+            conflicts ← newConflicts
+            jeśli (conflicts < globalBestConflicts) to:
+                globalBestConflicts ← conflicts
+
+            iter ← iter + 1
+
+        jeśli (conflicts = 0) to:
+            bestSolution ← kopia currentColor
+            bestNumColors ← maxColors
+            maxColors ← maxColors − 1
+        w przeciwnym razie:
+            przerwij pętlę
+
+    zwróć bestSolution, bestNumColors
+
+
+
+Funkcja countConflicts(colorAssignment, adjacencyList):
+    conflictCount ← 0
+    dla u od 1 do n wykonuj:
+        dla każdego sąsiada v z adjacencyList[u] wykonuj:
+            jeśli (u < v) oraz (colorAssignment[u] = colorAssignment[v]) to:
+                conflictCount ← conflictCount + 1
+    zwróć conflictCount

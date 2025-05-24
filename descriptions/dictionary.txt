@@ -1,0 +1,12 @@
+`Funkcja` - (definicja funkcji, np. nagłówek "int main()" w C++),
+`zwróć` - `return`,
+`jesli` - `if`,
+`w przeciwnym razie` - `else`,
+`dla` - `for`,
+`while` - `while`,
+`oraz` - `&&`,
+`lub` - `||`,
+`przerwij pętlę` - `break`,
+`kontynuuj` - `continue`,
+`←` - `=`,
+`nieskończoność` - `INT_MAX`
