@@ -1,0 +1,18 @@
+Algorytm rozpoczyna działanie od reprezentacji grafu jako listy sąsiedztwa. Każdemu wierzchołkowi 
+przypisywany jest losowy kolor z zakresu od 1 do n.
+
+Następnie przeprowadzany jest iteracyjny proces optymalizacji w celu eliminacji konfliktów. Najpierw 
+identyfikowane są wierzchołki biorące udział w konfliktach. Spośród nich losowo wybierany jest jeden, dla 
+którego rozważane są wszystkie inne kolory. Dla każdej zmiany obliczana jest wartość delta – różnica w 
+liczbie konfliktów przed i po zmianie – co pozwala ocenić jej skuteczność.
+
+W algorytmie wykorzystywany jest mechanizm tabu, który przechowuje ostatnie zmiany kolorów, 
+zapobiegając ich natychmiastowemu cofnięciu i powtarzalnym operacjom. Mechanizm aspiracji umożliwia 
+jednak wykonanie ruchu tabu, jeśli znacząco redukuje on konflikty.
+
+Gdy uda się uzyskać bezkonfliktowe kolorowanie dla danej liczby barw, algorytm podejmuje próbę
+rozwiązania problemu z mniejszą paletą kolorów. Wierzchołki z niedozwolonym kolorem 
+otrzymują losowo nowy kolor z dozwolonego zakresu, po czym ponownie rozpoczyna się proces optymalizacji.
+
+Algorytm stopniowo zmniejsza liczbę dostępnych kolorów, aż do momentu, gdy nie da się już znaleźć 
+poprawnego kolorowania. Wówczas przyjmuje się ostatnie znalezione bezkonfliktowe rozwiązanie jako ostateczne.
